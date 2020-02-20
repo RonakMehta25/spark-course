@@ -1,0 +1,18 @@
+Creation of RDD
+
+There are three ways to create RDD
+
+1. Parallelized
+
+sc.parallelize(1 to 100,5).collect
+
+sc.parallelize(Array(1,2,3,4,5))
+
+Here the second argument is number of partition. 
+
+Remember Number of task is equals to Number of partition
+
+
+2. From other RDD (map,filer)
+
+3. From other source like file ,hbase ,table

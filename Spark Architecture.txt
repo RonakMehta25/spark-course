@@ -1,0 +1,37 @@
+Spark Architecture
+It follows master-slave architecture
+
+1. Spark Driver
+2. Cluster Manager
+3. Worker Nodes
+
+The main program you write is the driver program and it is where sparkSession or context is created.
+
+It act as the connection to the cluster
+
+Driver program has 
+
+1. Tag Scheduler
+2. Task Scheduler
+3. Backend Scheduler
+4. Block Manager
+
+The Spark job is divided into many task that gets distributed on worker nodes.
+
+Spark Driver works with Cluster Manager for resourcing.
+
+The driver program converts the transformation and action into Directed Acyclic Graph. At this point it applies optimization like pipelining transformation.
+
+Then it converts DAG into physical Execution plan.
+
+Then it creates small physical execution units referred to as task under stage which needs to be sent to spark cluster
+
+Now Spark Driver talks with cluster Manager for resources
+
+Cluster Manager launches executor on worker node.
+
+Before the execution, Executor needs to register with driver program.
+
+Now Driver program has holistic view of all the executor and during the execution , it keeps monitering the executor
+
+Thus The driver program must listen for and accept incoming connections from its executors throughout its lifetime. Spark.Drive.port

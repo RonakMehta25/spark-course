@@ -1,0 +1,19 @@
+RDD is resilient Distributed Dataset. It is immutable distributed collection of data.
+
+It is resilient because of Replication.
+
+Features
+
+1. In-Memory Computation
+
+2. Lazy Evalution
+
+3. Fault Tolerant.
+
+4. Partitioning.
+
+5. Immutability.
+
+6. Coarse Grained operation
+
+7. Persistance.(Storage Level for RDD)

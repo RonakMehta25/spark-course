@@ -1,0 +1,66 @@
+Spark Operations
+
+Two main types of Operations 
+
+Transformation
+This operation are lazily evaluated. transformation on RDD returns another RDD.
+
+Example of Transformation:-
+
+1. map
+2. flatmap
+3. filter
+4. sample
+5. distinct
+6. reduceByKey
+
+1. map
+data.map (line => line.toUpperCase() )
+
+2. flatmap
+data.flatMap(_.toUpperCase())
+
+3. filter
+data.filter(x=>x!=35)
+
+4. sample
+sample(replacementAllowed,fractionSample,randomFunction)
+sample(false,0.3)
+
+5.distinct
+data.distinct
+
+6. reduceByKey
+reduceByKey(a,b=> a+b)
+reduceByKey(accumulatedValue:Int,newValue:Int=> accumulatedValue+newValue)
+reduceByKey(_+_)
+
+Action
+Action is where the actual computation occurs. It is where DAG gets executed.
+
+1. foreach
+reversed.foreach(x=>println(x))
+
+2. count
+data.count
+
+3. takeSample
+takeSample(replacementAllowed,numberOfSample,RandomNumber)
+takeSample(false,5)
+
+4. collect
+data.collect
+
+5. take
+data.take(5)
+
+6. show
+data.show
+
+7. reduce
+reduce(a,b=>a+b)
+
+8. countByValue
+.countByValue()
+
+9.fold

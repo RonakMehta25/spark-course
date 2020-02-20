@@ -1,0 +1,21 @@
+Spark Reading from Different Source
+
+Reading parquet
+
+spark.read.parquet("path");
+
+spark.read.json("path");
+
+spark.read.csv("path");
+
+sc.textFile("path");
+
+spark.read.textFile("README.md")
+
+
+val schemaString = "name age city"
+val fields = schemaString.split(" ").map(fieldName => StructField(fieldName, 
+StringType, nullable=true))
+val schema = StructType(fields)
+
+spark.read.option("header","false").schema(schema).csv("path");

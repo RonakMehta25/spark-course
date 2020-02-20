@@ -1,0 +1,17 @@
+Transformation
+
+Two Types of Transformation
+
+1. Narrow Transformation :
+
+Data needed to compute the result lives in the same partition
+
+eg map,filter
+
+2. Wide Transformation
+
+Data needed to compute the result may live in different partition and thus there can be lot of data shuffle across the network.
+
+eg Join,Union,groupBy,reduceBy,distinct,intersection,coalesce,sortByKey
+
+
