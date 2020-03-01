@@ -1,0 +1,9 @@
+how-to-store-custom-objects-in-dataset
+
+Use Kyro Serializer
+
+import spark.implicits._
+class MyObj(val i: Int)
+implicit val myObjEncoder = org.apache.spark.sql.Encoders.kryo[MyObj]
+// ...
+val d = spark.createDataset(Seq(new MyObj(1),new MyObj(2),new MyObj(3)))

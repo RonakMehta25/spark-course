@@ -19,3 +19,11 @@ StringType, nullable=true))
 val schema = StructType(fields)
 
 spark.read.option("header","false").schema(schema).csv("path");
+
+val usersDF = spark.read.load("examples/src/main/resources/users.parquet")
+
+val peopleDF = spark.read.format("json").load("examples/src/main/resources/people.json")
+
+
+For reading from different schema paths. This will merge schema from different paths.
+val mergedDF = spark.read.option("mergeSchema", "true").parquet("data/test_table")

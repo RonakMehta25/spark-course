@@ -1,0 +1,27 @@
+Spark Memory 
+
+Executor Memory = spark.storage.MemoryFraction + spark.shuffle.MemoryFraction
+
+Executor Container = Executor Memory + spark.yarn.executor.memoryOverhead
+
+The application master, which is a non-executor container with the special capability of requesting containers from YARN, takes up resources of its own that must be budgeted in. In yarn-client mode, it defaults to a 1024MB and one vcore. In yarn-cluster mode, the application master runs the driver, so it’s often useful to bolster its resources with the --driver-memory and --driver-cores properties.
+
+
+spark.default.parallelism determine number of partition while reading from file.
+
+To determine the number of partitions in an RDD, you can always call 
+rdd.partitions().size().
+
+How to increase partition
+
+Use the repartition transformation, which will trigger a shuffle.
+Configure your InputFormat to create more splits.
+Write the input data out to HDFS with a smaller block size.
+
+val rdd2 = rdd1.reduceByKey(_ + _, numPartitions = X)
+
+The main goal is to run enough tasks so that the data destined for each task fits in the memory available to that task.
+
+The memory available to each task is (spark.executor.memory * spark.shuffle.memoryFraction * spark.shuffle.safetyFraction)/spark.executor.cores. Memory fraction and safety fraction default to 0.2 and 0.8 respectively.
+
+

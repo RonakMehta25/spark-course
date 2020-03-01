@@ -1,0 +1,24 @@
+Accumulators
+
+Accumulators are variables that are only “added” to through an associative and commutative operation and can therefore be efficiently supported in parallel. 
+
+They can be used to implement counters (as in MapReduce) or sums.
+
+
+A numeric accumulator can be created by calling SparkContext.longAccumulator() or SparkContext.doubleAccumulator() to accumulate values of type Long or Double, respectively. 
+
+val accum = sc.longAccumulator("My Accumulator")
+
+sc.parallelize(Array(1, 2, 3, 4)).foreach(x => accum.add(x))
+
+accum.value
+
+Tasks running on a cluster can then add to it using the add method. 
+
+However, they cannot read its value. Only the driver program can read the accumulator’s value, using its value method.
+
+For accumulator updates performed inside actions only, Spark guarantees that each task’s update to the accumulator will only be applied once, i.e. restarted tasks will not update the value. 
+
+In transformations, users should be aware of that each task’s update may be applied more than once if tasks or job stages are re-executed.
+
+Consequently, accumulator updates are not guaranteed to be executed when made within a lazy transformation like map().

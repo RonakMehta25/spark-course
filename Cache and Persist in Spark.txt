@@ -1,0 +1,10 @@
+Cache and Persist in Spark
+
+Caching or persistence are optimization techniques for (iterative and interactive) Spark computations. They help saving interim partial results so they can be reused in subsequent stages
+
+With cache(), you use only the default storage level :
+
+MEMORY_ONLY for RDD
+MEMORY_AND_DISK for Dataset
+With persist(), you can specify which storage level you want for both RDD and Dataset.
+

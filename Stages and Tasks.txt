@@ -1,1 +1,17 @@
 Stages and Tasks
+
+A stage is nothing but a step in a physical execution plan. 
+
+It is basically a physical unit of the execution plan. 
+
+Stage is a set of parallel tasks i.e. one task per partition.
+
+There are two types of Spark Stage
+
+Basically, stages in Apache spark are two categories
+
+a. ShuffleMapStage in Spark
+
+b. ResultStage in Spark
+
+Stages are separated by shuffle

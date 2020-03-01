@@ -1,1 +1,7 @@
 Join
+
+a JOIN in Apache spark is expensive as it requires keys from different RDDs to be located on the same partition so that they can be combined locally.
+
+If the RDDs do not have a known partitioner, then shuffle operations occur to bring the keys into the same partitioner. 
+
+The default process of join in apache Spark is called a shuffled Hash join. The shuffled Hash join ensures that data on each partition has the same keys

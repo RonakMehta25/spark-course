@@ -1,0 +1,16 @@
+Dataframe
+
+DataFrame is a Dataset organised into named columns. 
+
+It is conceptually equivalent to a table in a relational database.
+
+So, a DataFrame has additional metadata due to its tabular format, which allows Spark to run certain optimizations on the finalized query.
+
+You can convert to RDD using rdd method
+
+val rowsRdd: RDD[Row] = df.rdd()
+
+and from rdd to Dataframe using toDF()
+
+def createDataFrame(RDD, schema: StructType (Optional)).toDF("new1","new2")
+

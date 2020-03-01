@@ -1,1 +1,7 @@
 Spark Writing to Different Source
+
+usersDF.select("name", "favorite_color").write.save("namesAndFavColors.parquet")
+
+peopleDF.select("name", "age").write.format("parquet").save("namesAndAges.parquet")
+
+df.write.option("path", "/some/path").saveAsTable("t")

@@ -1,0 +1,19 @@
+Joining of 2 rdd in text file
+
+
+Here we have customer table and store table and we are joining the two on store_id
+
+
+case class cust(cust_id: Int, store_id:Int, sale:Int)
+
+case class store(store_id:Int, rating:Float)
+
+val inp1 = sc.textFile("file:///home/acadgild/sparkjoins/customer_data").map(_.split(","))
+
+val inp2 = sc.textFile("file:///home/acadgild/sparkjoins/store_data").map(_.split(","))
+
+val cust_record = inp1.map(x => (x(1).toInt, cust(x(0).toInt, x(1).toInt, x(2).toInt)))
+
+val store_record = inp2.map(x => (x(0).toInt, store(x(0).toInt, x(1).toFloat)))
+
+val joined_rdd = cust_record.join(store_record)
